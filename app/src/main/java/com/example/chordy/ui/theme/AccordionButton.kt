@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+//circle shaped button
 @Composable
 fun AccordionButton(
     note: String,
@@ -21,6 +22,7 @@ fun AccordionButton(
     onPress: (String) -> Unit
 ) {
     val isChordNote = note in chordNotes
+    //buttons that need to change their opacity to 100%
     val isPressed = note in pressedNotes
 
     Box(
@@ -42,6 +44,7 @@ fun AccordionButton(
             },
         contentAlignment = Alignment.Center
     ) {
+        //shows the notes
         Text(note)
     }
 }

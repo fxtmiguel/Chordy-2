@@ -12,6 +12,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ChordyTheme {
+                //nav controller for my screens
                 val navController = rememberNavController()
                 AppNavGraph(navController)
             }

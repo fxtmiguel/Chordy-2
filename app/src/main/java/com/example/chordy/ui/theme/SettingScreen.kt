@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 fun SettingsScreen(
     onBack: () -> Unit
 ) {
-    // Use a fake state for the slider
+    //fake slider
     var fakeButtonSize by remember { mutableFloatStateOf(37f) }
 
     Column(
@@ -25,7 +25,7 @@ fun SettingsScreen(
         verticalArrangement = Arrangement.spacedBy(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
+        //title and icon
         Icon(
             Icons.Default.MusicNote,
             contentDescription = "Music Icon",
@@ -57,7 +57,7 @@ fun SettingsScreen(
         }
 
         Spacer(modifier = Modifier.height(50.dp))
-
+        //I did not get to finish features
         Text("More features coming soon!", style = MaterialTheme.typography.bodyMedium)
 
         Spacer(modifier = Modifier.height(50.dp))

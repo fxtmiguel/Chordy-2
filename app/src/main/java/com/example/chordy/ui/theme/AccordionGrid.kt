@@ -13,14 +13,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.unit.Dp
 
-// 34-button treble accordion layout
+// 34-button layout
 val treble34Layout = listOf(
     listOf("C#", "G", "A#", "D", "E", "G", "A#", "D", "E", "G", "A#"), // Column 1 (11)
     listOf("F#", "A", "C", "D#", "G", "A", "C", "D#", "G", "A", "C", "D#"), // Column 2 (12)
     listOf("B", "D", "F", "G#", "C", "D", "F", "G#", "C", "D", "F") // Column 3 (11)
 )
 
-// Only chords we want
+//the notes that make the chords
 val interactiveChordButtonMap = mapOf(
     "G" to setOf("G", "B", "D"),
     "F" to setOf("F", "A", "C"),
@@ -31,10 +31,12 @@ val interactiveChordButtonMap = mapOf(
 
 val buttonSize = 40.5.dp
 private val buttonSpacing = 6.dp
+//offset for the middle row
 private val middleColumnOffset: Dp = (-12).dp
 
 @Composable
 fun AccordionTreble34Interactive(selectedChord: String) {
+    //check reference the notes for the chord
     val chordNotes = chordButtonMap[selectedChord] ?: emptySet()
     var pressedNotes by remember(selectedChord) { mutableStateOf(setOf<String>()) }
 
@@ -55,7 +57,7 @@ fun AccordionTreble34Interactive(selectedChord: String) {
 
         Spacer(modifier = Modifier.width(20.dp))
 
-        // Middle column
+        // Middle column (longer column)
         Column(
             verticalArrangement = Arrangement.spacedBy(buttonSpacing),
             horizontalAlignment = Alignment.CenterHorizontally,

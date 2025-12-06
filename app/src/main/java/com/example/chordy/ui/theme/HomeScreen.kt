@@ -5,6 +5,10 @@ import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.ui.unit.sp
+import com.example.chordy.ui.theme.AccordionTreble34Interactive
+import com.example.chordy.ui.theme.chordButtonMap
+import java.util.Collections.emptySet
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,19 +18,17 @@ import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.chordy.ui.theme.AccordionTreble34Interactive
-import com.example.chordy.ui.theme.chordButtonMap
-import java.util.Collections.emptySet
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(onNavigateToSettings: () -> Unit = {}) {
 
+    //tabs for my chords
     val chordTabs = listOf("G", "F", "Bb", "Eb")
     var selectedTab by remember { mutableStateOf(0) }
 
     Scaffold(
+        //topbar with title and settings
         topBar = {
             TopAppBar(
                 title = {
@@ -42,7 +44,7 @@ fun HomeScreen(onNavigateToSettings: () -> Unit = {}) {
 
                         Spacer(modifier = Modifier.width(8.dp))
 
-                        // Logo-style title
+
                         Text(
                             "Chordy",
                             style = MaterialTheme.typography.headlineLarge.copy(
@@ -67,6 +69,7 @@ fun HomeScreen(onNavigateToSettings: () -> Unit = {}) {
                 }
             )
         },
+        //got rid of the extra padding
         contentWindowInsets = WindowInsets(0, 0, 0, 0)
 
     ) { innerPadding ->
@@ -85,6 +88,7 @@ fun HomeScreen(onNavigateToSettings: () -> Unit = {}) {
                     )
                 }
             }
+            //accordion ui
             Box(
                 modifier = Modifier
                     .fillMaxSize()

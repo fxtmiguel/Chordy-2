@@ -4,15 +4,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 
+//correct notes for quizzes
 val quizChords = mapOf(
     "G" to setOf("G", "B", "D"),
     "F" to setOf("F", "A", "C"),
@@ -20,6 +21,7 @@ val quizChords = mapOf(
     "Eb" to setOf("D#", "G", "A#")
 )
 
+//options for quiz
 val quizOptions = mapOf(
     "G" to listOf("G", "B", "D", "C", "E", "F"),
     "F" to listOf("F", "A", "C", "D", "G", "Bb"),
@@ -30,6 +32,7 @@ val quizOptions = mapOf(
 @Composable
 fun ProgressScreen() {
     var quizIndex by remember { mutableStateOf(0) }
+    //selected highlighted notes
     var selectedNotes by remember { mutableStateOf(setOf<String>()) }
     var passedQuizzes by remember { mutableStateOf(0) }
 
@@ -45,6 +48,7 @@ fun ProgressScreen() {
         verticalArrangement = Arrangement.spacedBy(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        //main title
         Text("Progress Quiz", style = MaterialTheme.typography.headlineMedium)
 
         LinearProgressIndicator(
@@ -53,7 +57,7 @@ fun ProgressScreen() {
                 .fillMaxWidth()
                 .height(20.dp)
         )
-
+        //current chord name displayed
         Text(
             "Chord: $currentChord",
             fontSize = 28.sp,
@@ -66,10 +70,12 @@ fun ProgressScreen() {
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            //options being displayed
             options.chunked(3).forEach { row ->
                 Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                     row.forEach { note ->
                         val isSelected = note in selectedNotes
+                        //circle buttons options
                         Box(
                             modifier = Modifier
                                 .size(60.dp)
@@ -91,11 +97,12 @@ fun ProgressScreen() {
                 }
             }
         }
-
+        //submit options
         Button(
             onClick = {
                 if (selectedNotes == chordNotes) {
                     passedQuizzes++
+
                     if (quizIndex < 3) quizIndex++
                     selectedNotes = emptySet()
                 } else {
@@ -106,11 +113,11 @@ fun ProgressScreen() {
         ) {
             Text("Submit")
         }
-
+        //
         if (passedQuizzes == 4) {
             Text("🎉 All quizzes completed!", style = MaterialTheme.typography.headlineSmall)
         }
-
+        //reset button
         Button(onClick = {
             passedQuizzes = 0
             quizIndex = 0
